@@ -21,7 +21,7 @@ public:
     virtual double calculate(double x, int degree) const = 0;
 
     /// This has to be overrided if the term corresponds to unknown value
-    virtual void addAnEquation(Balk& balk) const { return; }
+    virtual void addAnEquation(Balk &balk) const { return; }
 
     [[nodiscard]]
     constexpr int getShift() const noexcept { return shift; }
@@ -31,6 +31,7 @@ public:
 
     // Dont touch this bool. It is true only for initial variables (w_0, M_0 etc).
     bool initial_variable = false;
+
 protected:
     int shift;
     double segment_length;
@@ -43,7 +44,7 @@ class HingeSupport : public Term
 public:
     HingeSupport(int shift, double segment_length);
     double calculate(double x, int degree) const override;
-    void addAnEquation(Balk& balk) const override;
+    void addAnEquation(Balk &balk) const override;
 };
 
 // Uprugaya opora
@@ -52,8 +53,8 @@ class ElasticSupport : public Term
 public:
     ElasticSupport(int shift, double segment_length, double k);
     double calculate(double x, int degree) const override;
-    // TODO 
-    void addAnEquation(Balk& balk) const override;
+    // TODO
+    void addAnEquation(Balk &balk) const override;
     double get_k() const noexcept;
 
 private:
@@ -66,7 +67,7 @@ class HardPinching : public Term
 public:
     HardPinching(int shift, double segment_length);
     double calculate(double x, int degree) const override;
-    void addAnEquation(Balk& balk) const override;
+    void addAnEquation(Balk &balk) const override;
 };
 
 // Sosredotochennaya sila

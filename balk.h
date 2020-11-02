@@ -10,8 +10,8 @@
 
 #include "forces_and_moments.h"
 
-
-class Balk {
+class Balk
+{
 public:
     Balk(int balk_size, double segment_length, double E, double J);
     ~Balk() = default;
@@ -29,18 +29,23 @@ public:
     void add_uniform_load(int shift, double segment_length, double value);
 
     /// Solve the balk.
-    void solve_balk(const std::string& file_output);
+    void solve_balk(const std::string &file_output);
 
     // Getters
+    [[nodiscard]]
     constexpr inline int getBalkSize() const { return balk_size; }
 
+    [[nodiscard]]
     constexpr inline double getSegmentLength() const { return segment_length; }
 
-    inline auto& getTerms() { return terms; }
+    [[nodiscard]]
+    inline auto &getTerms() { return terms; }
 
+    [[nodiscard]]
     constexpr inline double getEJ() const { return E * J; }
 
-    constexpr inline auto& getA() { return A; }
+    [[nodiscard]]
+    constexpr inline auto &getA() { return A; }
 
 private:
     const int balk_size;
@@ -49,13 +54,13 @@ private:
     const double J;
     std::vector<std::shared_ptr<Term>> terms;
 
-// Block for matrix solving
+    // Block for matrix solving
 private:
     std::vector<std::vector<double>> A;
     std::vector<double> x;
     std::vector<double> b;
 
-// functions for calculations
+    // functions for calculations
 public:
     void func(int degree, double value);
 };

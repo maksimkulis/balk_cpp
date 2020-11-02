@@ -4,8 +4,8 @@
 #include <fstream>
 #include <sstream>
 
-
-Balk Parser::get_balk_from_file(const std::string& file_name) {
+Balk Parser::get_balk_from_file(const std::string &file_name)
+{
     std::ifstream file;
     file.open(file_name);
 
@@ -21,17 +21,15 @@ Balk Parser::get_balk_from_file(const std::string& file_name) {
     stream >> E >> J;
     Balk balk(balk_size, segment_length, E, J);
 
-    // Mini check
-    // std::cout << balk_size << std::endl << segment_length << std::endl;
-
     // Parse conditions
-    while (std::getline(file, line)) {
+    while (std::getline(file, line))
+    {
         stream.clear();
         stream.str(line);
 
         char type;
         int shift, shift_end;
-        double value; 
+        double value;
 
         // Read the type of expression
         stream >> type >> shift;
@@ -45,29 +43,30 @@ Balk Parser::get_balk_from_file(const std::string& file_name) {
             stream >> value;
             balk.add_elastic_support(shift, segment_length, value);
             break;
-        
+
         case 'Z':
             balk.add_hard_pinching(shift, segment_length);
             break;
-        
+
         case 'P':
             stream >> value;
             balk.add_concentrated_power(shift, segment_length, value);
             break;
-        
+
         case 'M':
             stream >> value;
             balk.add_moment(shift, segment_length, value);
             break;
-        
+
         case 'Q':
             stream >> shift_end >> value;
             balk.add_uniform_load(shift, segment_length, value);
-            if (shift_end != balk_size) {
+            if (shift_end != balk_size)
+            {
                 balk.add_uniform_load(shift_end, segment_length, -value);
             }
             break;
-        
+
         default:
             std::cout << "Error parsing" << std::endl;
         }

@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-y = []
 with open("outputs/out1.txt", "r") as f1, \
         open("outputs/out2.txt", "r") as f2, \
         open("outputs/out3.txt", "r") as f3, \

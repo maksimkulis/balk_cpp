@@ -61,33 +61,41 @@ void Balk::solve_balk(const std::string &file_output)
     std::shared_ptr<Term> first = nullptr;
     std::shared_ptr<Term> last = nullptr;
     auto it = terms.begin();
-    for (; it != terms.end(); ++it) {
+    for (; it != terms.end(); ++it)
+    {
         if ((it->get()->getShift() == 0) && !(it->get()->initial_variable))
         {
             first = *it;
             break;
         }
     }
-    if (first == nullptr) { // Free begin
+    if (first == nullptr)
+    { // Free begin
         func(2, 0);
         func(3, 0);
-    } else {
+    }
+    else
+    {
         first->addAnEquation(*this);
         terms.erase(it);
     }
 
     it = terms.begin();
-    for (; it != terms.end(); ++it) {
+    for (; it != terms.end(); ++it)
+    {
         if ((it->get()->getShift() == balk_size) && !(it->get()->initial_variable))
         {
             last = *it;
             break;
         }
     }
-    if (last == nullptr) { // Free end
+    if (last == nullptr)
+    { // Free end
         func(2, segment_length * balk_size);
         func(3, segment_length * balk_size);
-    } else {
+    }
+    else
+    {
         last->addAnEquation(*this);
         terms.erase(it);
     }
@@ -100,21 +108,25 @@ void Balk::solve_balk(const std::string &file_output)
         }
     }
 
-
     const std::vector<double> x = solve(A, b);
     std::vector<std::string> outputs = {"outputs/out1.txt", "outputs/out2.txt", "outputs/out3.txt", "outputs/out4.txt"};
-    for (int num = 0; num < outputs.size(); ++num) {
+    for (int num = 0; num < outputs.size(); ++num)
+    {
         std::ofstream file;
         file.open(outputs[num]);
 
-        for (int i = 0; i < NUM_OF_POINTS; ++i) {
+        for (int i = 0; i < NUM_OF_POINTS; ++i)
+        {
             double res = 0;
             int ind = 0;
-            for (const auto& el: terms) {
-                if (!(el->isUnknown())) {
+            for (const auto &el : terms)
+            {
+                if (!(el->isUnknown()))
+                {
                     res += el->calculate(i * balk_size * segment_length / NUM_OF_POINTS, num);
-                // } else if (!((el->isUnknown()) && (!el->initial_variable) && (el->getShift() == 0) || (el->getShift() != balk_size))) {
-                } else {
+                }
+                else
+                {
                     res += el->calculate(i * balk_size * segment_length / NUM_OF_POINTS, num) * x[ind++];
                 }
             }
@@ -130,9 +142,12 @@ void Balk::func(int degree, double value)
     double right_part = 0;
     for (auto &el : terms)
     {
-        if ((el->isUnknown()) && (el->initial_variable || ((el->getShift() != 0) && (el->getShift() != balk_size)))) {
+        if ((el->isUnknown()) && (el->initial_variable || ((el->getShift() != 0) && (el->getShift() != balk_size))))
+        {
             vec.push_back(el->calculate(value, degree));
-        } else {
+        }
+        else
+        {
             right_part += el->calculate(value, degree);
         }
     }
