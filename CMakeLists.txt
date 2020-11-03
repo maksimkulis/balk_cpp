@@ -4,8 +4,5 @@ project(Balka VERSION 1.0.0)
 
 add_executable(balka)
 target_include_directories(balka PRIVATE ${PROJECT_SOURCE_DIR}/include)
-set_target_properties(
-    balka PROPERTIES
-    CMAKE_CXX_VERSION 17
-)
+set_target_properties(balka PROPERTIES COMPILE_FLAGS --std=c++17)
 add_subdirectory(src)
