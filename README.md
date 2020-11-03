@@ -13,14 +13,10 @@ balk_size segment_length E J
 [term3]
 ...
 ```
-balk_size: int. Number of balk segments.
-
-segment_length: double. Length of each balk segment.
-
-E J: doubles. Еlastic material constants
-
+balk_size: int. Number of balk segments.   
+segment_length: double. Length of each balk segment.   
+E J: doubles. Еlastic material constants.   
 Term is one of the following constructions:
-
 ```txt
 R shift
 Z shift
@@ -41,8 +37,8 @@ Q - uniform load.
 ```txt
 10 1.0 100 200
 R 0
-R 10
-P 5 100
+Z 10
+P 7 50
 ```
 Run the program:
 ```sh
