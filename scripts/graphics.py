@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 
 def show():
@@ -28,8 +29,10 @@ def show():
         for num in f4:
             y.append(float(num))
         axe[3].plot(np.linspace(0, 1, len(y)), np.array(y))
+        plt.savefig("outputs/image.png")
         plt.show()
 
 
 if __name__ == "__main__":
+    # sys.argv[1]
     show()
