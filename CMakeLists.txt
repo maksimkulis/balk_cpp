@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.13.0)
 
-set(SOURCES main.cpp balk.cpp forces_and_moments.cpp lu_solver.cpp main.cpp parser.cpp)
+project(Balka VERSION 1.0.0)
 
-target_sources(balka PRIVATE ${SOURCES})
+add_executable(balka)
+target_include_directories(balka PRIVATE ${PROJECT_SOURCE_DIR}/include)
+set_target_properties(
+    balka PROPERTIES
+    CMAKE_CXX_VERSION 17
+)
+add_subdirectory(src)
