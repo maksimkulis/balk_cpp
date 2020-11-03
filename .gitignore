@@ -1,0 +1,6 @@
+*.o
+outputs
+program
+jup_not
+inputs
+.vscode

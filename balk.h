@@ -29,7 +29,7 @@ public:
     void add_uniform_load(int shift, double segment_length, double value);
 
     /// Solve the balk.
-    void solve_balk(const std::string &file_output);
+    void solve_balk();
 
     // Getters
     [[nodiscard]]

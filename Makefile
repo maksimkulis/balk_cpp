@@ -39,8 +39,8 @@ run: program
 	@echo "$(OKCOLOR)Calculated!!!$(NC)"
 	@echo "$(COMPCOLOR)Drawing...$(NC)"
 	@python graphics.py
-	@rm output.txt
 
 clean:
 	@echo "$(NOTOKCOLOR)delete object files$(NC)"
 	@rm *.o program
+	@rm -rf outputs

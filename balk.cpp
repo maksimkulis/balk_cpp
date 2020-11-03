@@ -49,7 +49,7 @@ void Balk::add_uniform_load(int shift, double segment_length, double value)
 }
 
 // Solve this God damn balk
-void Balk::solve_balk(const std::string &file_output)
+void Balk::solve_balk()
 {
     // Count a number of unknown elements. Init with 4 because of initial variables.
     size_t unknown_num = 4;
