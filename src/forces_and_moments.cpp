@@ -104,7 +104,7 @@ void ElasticSupport::addAnEquation(Balk &balk) const
         ++it;
     }
     assert(it != balk.getTerms().end());
-    balk.getA().back()[ind_in_A] -= 1 / (k * balk.getEJ());
+    balk.getA().back()[ind_in_A] += 1 / (k * balk.getEJ());
 }
 
 HardPinching::HardPinching(int shift, double segment_length)
@@ -155,7 +155,7 @@ double Moment::calculate(double x, int degree) const
     return calculatePolinomAtPoint(x - shift * segment_length, moment, 2 - degree);
 }
 
-UniformLoad::UniformLoad(int shift, double segment_lengths, double force)
+UniformLoad::UniformLoad(int shift, double segment_length, double force)
     : Term(shift, segment_length, false), force(force)
 {
 }

@@ -15,7 +15,7 @@ run: build
 	@./build/balka "$(INPUT)"
 	@echo "$(OKCOLOR)Calculated!$(NC)"
 	@echo "$(OKCOLOR)Drawing...$(NC)"
-	@python scripts/graphics.py
+	@python scripts/graphics.py $(INPUT)
 
 clean:
 	@echo "$(COMPCOLOR)delete object files$(NC)"
