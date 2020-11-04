@@ -3,7 +3,7 @@
 Calculate the balk problem.
 ##### Usage:
 ```sh
-make run [INPUT=<input_file_name>]
+make run INPUT=<input_file_name> [OUTPUT=<output_folder_name>]
 ```
 ##### Input file format:
 ```txt

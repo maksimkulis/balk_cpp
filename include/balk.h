@@ -31,6 +31,8 @@ public:
     /// Solve the balk.
     void solve_balk();
 
+    void save_result(const std::string &folder_name, size_t num_of_points = 1000);
+
     // Getters
     [[nodiscard]]
     constexpr inline int getBalkSize() const { return balk_size; }

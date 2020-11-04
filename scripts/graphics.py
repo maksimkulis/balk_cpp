@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import numpy as np
 import sys
+import os
 
 
 def make_markers(axe, terms, y, balk_size):
@@ -29,9 +30,11 @@ def make_vertical_lines(axes, terms, balk_size):
     for term in terms:
         for axe in axes:
             axe.axvline(term[1], c='k', alpha=0.1)
+            if term[0] == "Q":
+                axe.axvline(term[2], c='k', alpha=0.1)
 
 
-def show(balk_size, segment_length, E, J, terms):
+def show(balk_size, segment_length, E, J, terms, output_dir):
     with open("outputs/out1.txt", "r") as f1, \
             open("outputs/out2.txt", "r") as f2, \
             open("outputs/out3.txt", "r") as f3, \
@@ -82,7 +85,7 @@ def show(balk_size, segment_length, E, J, terms):
         fig.legend(handles=[hinge_support, rigid_fixing, concetrated_force,
                             elastic_support, moment, uniform_load], prop={'size': 5}, framealpha=0.5)
 
-        plt.savefig("outputs/image.png")
+        plt.savefig(os.path.join(output_dir, "image.png"))
         plt.show()
 
 
@@ -114,4 +117,4 @@ if __name__ == "__main__":
 
     input_file_name = sys.argv[1]
     with open(input_file_name, "r") as file:
-        show(*parse_file(file))
+        show(*parse_file(file), sys.argv[2])

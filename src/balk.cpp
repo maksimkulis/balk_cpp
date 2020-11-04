@@ -1,11 +1,10 @@
 #include "balk.h"
 
 #include <fstream>
+#include <filesystem>
 #include <string>
 
 #include "lu_solver.h"
-
-const int NUM_OF_POINTS = 1000;
 
 Balk::Balk(int balk_size, double segment_length, double E, double J)
     : balk_size(balk_size), segment_length(segment_length), E(E), J(J)
@@ -106,14 +105,20 @@ void Balk::solve_balk()
         }
     }
 
-    const std::vector<double> x = lu::solve(A, b);
-    std::vector<std::string> outputs = {"outputs/out1.txt", "outputs/out2.txt", "outputs/out3.txt", "outputs/out4.txt"};
+    x = lu::solve(A, b);
+}
+
+void Balk::save_result(const std::string &folder_name, size_t num_of_points)
+{
+    std::vector<std::string> outputs = {"out1.txt", "out2.txt", "out3.txt", "out4.txt"};
     for (int num = 0; num < outputs.size(); ++num)
     {
+        std::filesystem::path p = folder_name;
+        p /= outputs[num];
         std::ofstream file;
-        file.open(outputs[num]);
+        file.open(p);
 
-        for (int i = 0; i < NUM_OF_POINTS; ++i)
+        for (int i = 0; i < num_of_points; ++i)
         {
             double res = 0;
             int ind = 0;
@@ -121,11 +126,11 @@ void Balk::solve_balk()
             {
                 if (!(el->isUnknown()))
                 {
-                    res += el->calculate(i * balk_size * segment_length / NUM_OF_POINTS, num);
+                    res += el->calculate(i * balk_size * segment_length / num_of_points, num);
                 }
                 else
                 {
-                    res += el->calculate(i * balk_size * segment_length / NUM_OF_POINTS, num) * x[ind++];
+                    res += el->calculate(i * balk_size * segment_length / num_of_points, num) * x[ind++];
                 }
             }
             file << res / (E * J) << std::endl;
