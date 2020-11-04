@@ -3,14 +3,14 @@ OKCOLOR = \033[1;32m
 NOTOKCOLOR = \033[0;31m
 NC= \033[0m
 
-all: build
+all: program
 
-build:
+program:
 	@mkdir -p build
 	@cmake -B ./build/ -S ./
 	@make -C build
 
-run: build
+run: program
 	@echo "$(COMPCOLOR)Calculating...$(NC)"
 	@./build/balka "$(INPUT)"
 	@echo "$(OKCOLOR)Calculated!$(NC)"

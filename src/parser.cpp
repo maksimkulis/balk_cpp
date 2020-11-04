@@ -1,13 +1,14 @@
 #include "parser.h"
 
-#include <iostream>
 #include <fstream>
 #include <sstream>
 
 Balk Parser::get_balk_from_file(const std::string &file_name)
 {
-    std::ifstream file;
-    file.open(file_name);
+    std::ifstream file{file_name};
+    if (!file) {
+        throw ParseError("Cannot open Input file");
+    }
 
     std::string line;
     std::getline(file, line);
@@ -68,7 +69,7 @@ Balk Parser::get_balk_from_file(const std::string &file_name)
             break;
 
         default:
-            std::cout << "Error parsing" << std::endl;
+            throw ParseError("Unknown term");
         }
     }
     file.close();

@@ -74,7 +74,7 @@ def show(balk_size, segment_length, E, J, terms):
         concetrated_force = mlines.Line2D([], [], color='green', marker='|', linestyle='None',
                                           markersize=5, label='Concetrated force')
         elastic_support = mlines.Line2D([], [], color='green', marker='d', linestyle='None',
-                                        markersize=5, label='Concetrated force')
+                                        markersize=5, label='Elastic support')
         moment = mlines.Line2D([], [], color='green', marker='o', linestyle='None',
                                markersize=5, label='Moment')
         uniform_load = mlines.Line2D([], [], color='orange', alpha=0.2, marker='s', linestyle='None',

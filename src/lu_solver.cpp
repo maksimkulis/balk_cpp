@@ -1,9 +1,7 @@
 #include "lu_solver.h"
 
-#include <stdlib.h>
 #include <cmath>
 #include <vector>
-#include <cassert>
 
 /* INPUT: A - array of pointers to rows of a square matrix having dimension N
  *        Tol - small tolerance number to detect failure when the matrix is near degenerate
@@ -13,9 +11,14 @@
  *        where S is the number of row exchanges needed for determinant computation, det(P)=(-1)^S    
  */
 
-int LUPDecompose(double **A, int N, double Tol, int *P)
+namespace lu
 {
 
+namespace
+{
+
+int LUPDecompose(double **A, int N, double Tol, int *P)
+{
     int i, j, k, imax;
     double maxA, *ptr, absA;
 
@@ -66,8 +69,8 @@ int LUPDecompose(double **A, int N, double Tol, int *P)
 }
 
 /* INPUT: A,P filled in LUPDecompose; b - rhs vector; N - dimension
- * OUTPUT: x - solution vector of A*x=b
- */
+* OUTPUT: x - solution vector of A*x=b
+*/
 void LUPSolve(double **A, int *P, double *b, int N, double *x)
 {
 
@@ -89,8 +92,8 @@ void LUPSolve(double **A, int *P, double *b, int N, double *x)
 }
 
 /* INPUT: A,P filled in LUPDecompose; N - dimension
- * OUTPUT: IA is the inverse of the initial matrix
- */
+* OUTPUT: IA is the inverse of the initial matrix
+*/
 void LUPInvert(double **A, int *P, int N, double **IA)
 {
 
@@ -115,8 +118,8 @@ void LUPInvert(double **A, int *P, int N, double **IA)
 }
 
 /* INPUT: A,P filled in LUPDecompose; N - dimension. 
- * OUTPUT: Function returns the determinant of the initial matrix
- */
+* OUTPUT: Function returns the determinant of the initial matrix
+*/
 double LUPDeterminant(double **A, int *P, int N)
 {
 
@@ -127,6 +130,8 @@ double LUPDeterminant(double **A, int *P, int N)
 
     return (P[N] - N) % 2 == 0 ? det : -det;
 }
+
+} // namespace
 
 std::vector<double> solve(const std::vector<std::vector<double>> &A, const std::vector<double> &b)
 {
@@ -163,3 +168,5 @@ std::vector<double> solve(const std::vector<std::vector<double>> &A, const std::
     free(res);
     return x;
 }
+
+} // namespace lu

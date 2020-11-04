@@ -1,7 +1,5 @@
 #include "balk.h"
 
-#include <cassert>
-#include <iostream>
 #include <fstream>
 #include <string>
 
@@ -108,7 +106,7 @@ void Balk::solve_balk()
         }
     }
 
-    const std::vector<double> x = solve(A, b);
+    const std::vector<double> x = lu::solve(A, b);
     std::vector<std::string> outputs = {"outputs/out1.txt", "outputs/out2.txt", "outputs/out3.txt", "outputs/out4.txt"};
     for (int num = 0; num < outputs.size(); ++num)
     {
