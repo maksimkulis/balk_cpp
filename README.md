@@ -33,7 +33,7 @@ M - moment.
 Q - uniform load.   
 
 #### A simple example:
-##### input.txt file:
+##### examples/input1.txt file:
 ```txt
 20 1.0 100.0 200.0
 Z 0
@@ -46,7 +46,16 @@ K 9 0.0001
 ```
 Run the program:
 ```sh
-make run INPUT="input.txt"
+make run INPUT="examples/input1.txt" OUTPUT="outputs"
 ```
+If all is OK, you will see a very cool picture of the deformed balk. Also this code creates a folder "outputs", where you can see the results of function calculation
+
+```sh
+ls outputs
+```
+```
+image.png  output1.txt  output2.txt  output3.txt output4.txt
+```
+##### image.png:
 
 ![Alt text](https://github.com/maksimkulis/balk_cpp/blob/master/doc/image.png)
