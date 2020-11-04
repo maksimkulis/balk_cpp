@@ -22,7 +22,7 @@ def make_markers(axe, terms, y, balk_size):
             axe.plot(term[1], 0, marker="d", color='green')
         elif term[0] == "Q":
             sign = 1 if term[3] > 0 else -1
-            axe.fill_between(np.array([term[1], term[2]]), np.ones(
+            axe.fill_between(np.array([term[1], term[2]]), - np.ones(
                 shape=2) * (np.max(y) - np.min(y)) * sign / 5, 0, facecolor="orange", color='orange', alpha=0.2)
 
 
@@ -35,10 +35,10 @@ def make_vertical_lines(axes, terms, balk_size):
 
 
 def show(balk_size, segment_length, E, J, terms, output_dir):
-    with open("outputs/out1.txt", "r") as f1, \
-            open("outputs/out2.txt", "r") as f2, \
-            open("outputs/out3.txt", "r") as f3, \
-            open("outputs/out4.txt", "r") as f4:
+    with open(os.path.join(output_dir, "out1.txt"), "r") as f1, \
+            open(os.path.join(output_dir, "out2.txt"), "r") as f2, \
+            open(os.path.join(output_dir, "out3.txt"), "r") as f3, \
+            open(os.path.join(output_dir, "out4.txt"), "r") as f4:
         fig, axe = plt.subplots(4, 1, sharex=True, figsize=(5, 5))
         y = []
         for num in f1:
