@@ -54,7 +54,7 @@ If all is OK, you will see a very cool picture of the deformed balk. Also this c
 ls outputs
 ```
 ```
-image.png  output1.txt  output2.txt  output3.txt output4.txt
+image.png  out1.txt  out2.txt  out3.txt out4.txt
 ```
 ##### image.png:
 

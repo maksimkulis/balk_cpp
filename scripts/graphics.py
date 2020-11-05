@@ -29,7 +29,7 @@ def make_markers(axe, terms, y, balk_size):
 def make_vertical_lines(axes, terms, balk_size):
     for term in terms:
         for axe in axes:
-            axe.axvline(term[1], c='k', alpha=0.1)
+            axe.axvline(term[1], c='red', alpha=0.1)
             if term[0] == "Q":
                 axe.axvline(term[2], c='k', alpha=0.1)
 
@@ -50,24 +50,28 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
                     np.zeros(shape=len(y)), color='C0')
         make_markers(axe[0], terms, y, balk_size)
         axe[0].set_title(r"$w(x)$", size=6, loc="left", pad=2)
+        axe[0].grid()
 
         y = []
         for num in f2:
             y.append(float(num))
         axe[1].plot(np.linspace(0, balk_size, len(y)), np.array(y))
         axe[1].set_title(r"$\theta(x)$", size=6, loc="left", pad=2)
+        axe[1].grid()
 
         y = []
         for num in f3:
             y.append(float(num))
         axe[2].plot(np.linspace(0, balk_size, len(y)), np.array(y))
         axe[2].set_title(r"$M(x)$", size=6, loc="left", pad=2)
+        axe[2].grid()
 
         y = []
         for num in f4:
             y.append(float(num))
         axe[3].plot(np.linspace(0, balk_size, len(y)), np.array(y))
         axe[3].set_title(r"$Q(x)$", size=6, loc="left", pad=2)
+        axe[3].grid()
 
         make_vertical_lines(axe, terms, balk_size)
         hinge_support = mlines.Line2D([], [], color='red', marker=6, linestyle='None',
