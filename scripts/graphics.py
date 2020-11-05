@@ -29,9 +29,15 @@ def make_markers(axe, terms, y, balk_size):
 def make_vertical_lines(axes, terms, balk_size):
     for term in terms:
         for axe in axes:
-            axe.axvline(term[1], c='red', alpha=0.1)
+            if term[0] in {"Z", "R"}:
+                c = "red"
+            elif term[0] in {"P", "K", "M"}:
+                c = "green"
+            elif term[0] in {"Q"}:
+                c = "orange"
+            axe.axvline(term[1], c=c, alpha=0.3)
             if term[0] == "Q":
-                axe.axvline(term[2], c='k', alpha=0.1)
+                axe.axvline(term[2], c=c, alpha=0.3)
 
 
 def show(balk_size, segment_length, E, J, terms, output_dir):
@@ -45,9 +51,9 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
             y.append(float(num))
         axe[0].margins(y=1)
         axe[0].plot(np.linspace(0, balk_size, len(y)),
-                    np.array(y), linestyle="--")
+                    np.array(y))
         axe[0].plot(np.linspace(0, balk_size, len(y)),
-                    np.zeros(shape=len(y)), color='C0')
+                    np.zeros(shape=len(y)), color='C0', linestyle="--")
         make_markers(axe[0], terms, y, balk_size)
         axe[0].set_title(r"$w(x)$", size=6, loc="left", pad=2)
         axe[0].grid()
