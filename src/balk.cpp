@@ -133,7 +133,11 @@ void Balk::save_result(const std::string &folder_name, size_t num_of_points)
                     res += el->calculate(i * balk_size * segment_length / num_of_points, num) * x[ind++];
                 }
             }
-            file << res / (E * J) << std::endl;
+            if (num <= 1) 
+            {
+                res /= (E * J);
+            }
+            file << res << std::endl;
         }
         file.close();
     }

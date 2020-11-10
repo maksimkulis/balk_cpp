@@ -46,6 +46,7 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
             open(os.path.join(output_dir, "out3.txt"), "r") as f3, \
             open(os.path.join(output_dir, "out4.txt"), "r") as f4:
         fig, axe = plt.subplots(4, 1, sharex=True, figsize=(5, 5))
+        fig.tight_layout()
         y = []
         for num in f1:
             y.append(float(num))
@@ -55,28 +56,28 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
         axe[0].plot(np.linspace(0, balk_size, len(y)),
                     np.zeros(shape=len(y)), color='C0', linestyle="--")
         make_markers(axe[0], terms, y, balk_size)
-        axe[0].set_title(r"$w(x)$", size=6, loc="left", pad=2)
+        axe[0].set_title(r"$w(x)$", size=10, loc="center", pad=1)
         axe[0].grid()
 
         y = []
         for num in f2:
             y.append(float(num))
         axe[1].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[1].set_title(r"$\theta(x)$", size=6, loc="left", pad=2)
+        axe[1].set_title(r"$\theta(x)$", size=10, loc="center", pad=1)
         axe[1].grid()
 
         y = []
         for num in f3:
             y.append(float(num))
         axe[2].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[2].set_title(r"$M(x)$", size=6, loc="left", pad=2)
+        axe[2].set_title(r"$M(x)$", size=10, loc="center", pad=1)
         axe[2].grid()
 
         y = []
         for num in f4:
             y.append(float(num))
         axe[3].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[3].set_title(r"$Q(x)$", size=6, loc="left", pad=2)
+        axe[3].set_title(r"$Q(x)$", size=10, loc="center", pad=1)
         axe[3].grid()
 
         make_vertical_lines(axe, terms, balk_size)
