@@ -45,7 +45,7 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
             open(os.path.join(output_dir, "out2.txt"), "r") as f2, \
             open(os.path.join(output_dir, "out3.txt"), "r") as f3, \
             open(os.path.join(output_dir, "out4.txt"), "r") as f4:
-        fig, axe = plt.subplots(4, 1, sharex=True, figsize=(5, 5))
+        fig, axe = plt.subplots(4, 1, sharex=True, figsize=(10, 7))
         fig.tight_layout()
         y = []
         for num in f1:
@@ -56,47 +56,48 @@ def show(balk_size, segment_length, E, J, terms, output_dir):
         axe[0].plot(np.linspace(0, balk_size, len(y)),
                     np.zeros(shape=len(y)), color='C0', linestyle="--")
         make_markers(axe[0], terms, y, balk_size)
-        axe[0].set_title(r"$w(x)$", size=10, loc="center", pad=1)
+        axe[0].set_title(r"$w(x)$", size=13, loc="center", pad=1)
         axe[0].grid()
 
         y = []
         for num in f2:
             y.append(float(num))
         axe[1].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[1].set_title(r"$\theta(x)$", size=10, loc="center", pad=1)
+        axe[1].set_title(r"$\theta(x)$", size=13, loc="center", pad=1)
         axe[1].grid()
 
         y = []
         for num in f3:
             y.append(float(num))
         axe[2].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[2].set_title(r"$M(x)$", size=10, loc="center", pad=1)
+        axe[2].set_title(r"$M(x)$", size=13, loc="center", pad=1)
         axe[2].grid()
 
         y = []
         for num in f4:
             y.append(float(num))
         axe[3].plot(np.linspace(0, balk_size, len(y)), np.array(y))
-        axe[3].set_title(r"$Q(x)$", size=10, loc="center", pad=1)
+        axe[3].set_title(r"$Q(x)$", size=13, loc="center", pad=1)
         axe[3].grid()
 
         make_vertical_lines(axe, terms, balk_size)
-        hinge_support = mlines.Line2D([], [], color='red', marker=6, linestyle='None',
-                                      markersize=5, label='Hinge support')
+        hinge_support = mlines.Line2D([], [], color='red', marker="^", linestyle='None',
+                                      markersize=8, label='Hinge support')
         rigid_fixing = mlines.Line2D([], [], color='red', marker='x', linestyle='None',
-                                     markersize=5, label='Rigid fixing')
+                                     markersize=8, label='Rigid fixing')
         concetrated_force = mlines.Line2D([], [], color='green', marker='|', linestyle='None',
-                                          markersize=5, label='Concetrated force')
+                                          markersize=8, label='Concetrated force')
         elastic_support = mlines.Line2D([], [], color='green', marker='d', linestyle='None',
-                                        markersize=5, label='Elastic support')
+                                        markersize=8, label='Elastic support')
         moment = mlines.Line2D([], [], color='green', marker='o', linestyle='None',
-                               markersize=5, label='Moment')
+                               markersize=8, label='Moment')
         uniform_load = mlines.Line2D([], [], color='orange', alpha=0.2, marker='s', linestyle='None',
-                                     markersize=5, label='Uniform load')
+                                     markersize=8, label='Uniform load')
         fig.legend(handles=[hinge_support, rigid_fixing, concetrated_force,
-                            elastic_support, moment, uniform_load], prop={'size': 5}, framealpha=0.5)
+                            elastic_support, moment, uniform_load], prop={'size': 8}, framealpha=0.5)
 
-        plt.savefig(os.path.join(output_dir, "image.png"))
+        plt.subplots_adjust(right=0.8, left=0.07)
+        plt.savefig(os.path.join(output_dir, "image.png"), dpi='figure')
         plt.show()
 
 
