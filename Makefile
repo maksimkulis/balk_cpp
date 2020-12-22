@@ -24,7 +24,7 @@ endif
 	@./build/balka "$(INPUT)" "$(OUTPUT)"
 	@echo "$(OKCOLOR)Calculated!$(NC)"
 	@echo "$(OKCOLOR)Drawing...$(NC)"
-	@python scripts/graphics.py $(INPUT) $(OUTPUT)
+	@python3 scripts/graphics.py $(INPUT) $(OUTPUT)
 
 clean:
 	@echo "$(COMPCOLOR)delete object files$(NC)"
